@@ -10,16 +10,19 @@ import Foundation
 protocol BemobileManagerDelegate {
     
     func didUpdateInfo(info: [BemobileModel])
-    func didUpdateRate(info: [BemobileModel])
+    func didUpdateRate(info: [RateModel])
 }
 class BemobileManager {
     let bemobileURL: String = "https://android-ios-service.herokuapp.com/transactions"
     let rateURL: String = "https://android-ios-service.herokuapp.com/rates"
     var delegate: BemobileManagerDelegate?
     
-    func fetch() {
+    func fetchInfo() {
         
         performRequest(with: bemobileURL)
+   
+    }
+    func fetchRate(){
         performRequest(with: rateURL)
     }
     
@@ -42,7 +45,7 @@ class BemobileManager {
                              
                             }
                         } else {
-                            if let info = self.parseJSON(bemobileData: safeData) {
+                            if let info = self.parseJSONRate(bemobileData: safeData) {
                                 self.delegate?.didUpdateRate(info: info)
                                 print("rate: ", info)
                             }
@@ -71,5 +74,21 @@ class BemobileManager {
         }
         
     }
-    
+    private func parseJSONRate(bemobileData: Data) -> [RateModel]? {
+        
+        let decoder = JSONDecoder()
+        
+        do {
+            let decodeData = try decoder.decode([RateModel].self, from: bemobileData)
+            let info = decodeData.map{
+                RateModel(from: $0.from, to: $0.to, rate: $0.rate)
+            }
+           return info
+            
+        } catch{
+            print(error.localizedDescription)
+            return nil
+        }
+        
+    }
 }

@@ -40,10 +40,11 @@ class HomeRouter {
     
     // MARK: - Routes
     
-    func showDetails(info: [BemobileModel]?){
+    func showDetails(info: [BemobileModel]?, rate: [RateModel]?){
         DispatchQueue.main.async {
             let controller = DetailsRouter.getViewController()
             controller.viewModel.infoDetail = info
+            controller.viewModel.infoRate = rate
             let nav = UINavigationController(rootViewController: controller)
             nav.modalPresentationStyle = .fullScreen
             self.viewController?.present(nav, animated: true, completion: nil)

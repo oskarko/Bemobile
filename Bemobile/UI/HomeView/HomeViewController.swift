@@ -22,6 +22,7 @@ class HomeViewController: UIViewController {
     var manager = BemobileManager()
     var infoAPI: [BemobileModel] = []
     var infoArray = [String]()
+    var rateArray = [RateModel]()
 
     
    lazy var tableView : UITableView = {
@@ -41,7 +42,8 @@ class HomeViewController: UIViewController {
         view.backgroundColor = .white
         manager.delegate = self
         configureUI()
-        manager.fetch()
+        manager.fetchInfo()
+        manager.fetchRate()
        
     }
     
@@ -68,8 +70,8 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
-        var array = infoAPI.filter({$0.sku == infoArray[indexPath.row]})
-        self.viewModel.router?.showDetails(info: array)
+        let array = infoAPI.filter({$0.sku == infoArray[indexPath.row]})
+        self.viewModel.router?.showDetails(info: array, rate: rateArray)
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         for item in infoAPI {
@@ -97,7 +99,9 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 // MARK: - Delegado
 extension HomeViewController: BemobileManagerDelegate {
     
-    func didUpdateRate(info: [BemobileModel]) {
+    func didUpdateRate(info: [RateModel]) {
+        
+       rateArray = info
         
     }
     
