@@ -67,9 +67,9 @@ class HomeViewController: UIViewController {
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        let array = 
-        self.viewModel.router?.showDetails(info: infoAPI[indexPath.row])
+
+        var array = infoAPI.filter({$0.sku == infoArray[indexPath.row]})
+        self.viewModel.router?.showDetails(info: array)
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         for item in infoAPI {
@@ -86,7 +86,6 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         let info = infoArray[indexPath.row]
         var content = cell.defaultContentConfiguration()
         content.text = info
-        //content.secondaryText = String(info.amount) + info.currency.rawValue
         cell.contentConfiguration = content
         cell.backgroundColor = .white
         return cell

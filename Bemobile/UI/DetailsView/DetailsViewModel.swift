@@ -14,14 +14,15 @@ class DetailsViewModel {
     
     weak var view: DetailsViewControllerProtocol?
     var router: DetailsRouter?
-    var infoDetail: BemobileModel?
+    var infoDetail: [BemobileModel]?
     var infoRate: [RateModel]?
     // MARK: - Helpers
     
     
-    func totalAmountInEuro() -> Double{
-        let amount = infoDetail?.amount ?? 0.0
-        let currency = infoDetail?.currency
+    func convertToEuro(infoDetail : BemobileModel) -> Double{
+        
+        let amount = infoDetail.amount
+        let currency = infoDetail.currency
         
         
         switch currency {
@@ -87,10 +88,17 @@ class DetailsViewModel {
             
             let toEur = infoRate?.first(where: {$0.from == "USD" && $0.to == "EUR"})
             return amount * (toEur?.rate ?? 0.0)
-        case .none:
-            break
+
         }
-        
-        return 0.0
+
+    }
+    
+    func totalAmountInEuro() -> Double{
+        guard let infoDetail = infoDetail else { return 0.0 }
+        var acum = 0.0
+        for item in infoDetail{
+            acum += convertToEuro(infoDetail: item)
+        }
+        return acum
     }
 }

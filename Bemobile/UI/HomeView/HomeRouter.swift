@@ -40,7 +40,7 @@ class HomeRouter {
     
     // MARK: - Routes
     
-    func showDetails(info: BemobileModel?){
+    func showDetails(info: [BemobileModel]?){
         DispatchQueue.main.async {
             let controller = DetailsRouter.getViewController()
             controller.viewModel.infoDetail = info
