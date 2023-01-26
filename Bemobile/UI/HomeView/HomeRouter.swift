@@ -7,18 +7,19 @@
 //
 
 import Foundation
+import UIKit
 
 class HomeRouter {
     
     // MARK: - Properties
     
     weak var viewController: HomeViewController?
-
+    
     // MARK: - Helpers
     
     static func getViewController() -> HomeViewController {
         let configuration = configureModule()
-
+        
         return configuration.vc
     }
     
@@ -26,17 +27,27 @@ class HomeRouter {
         let viewController = HomeViewController()
         let router = HomeRouter()
         let viewModel = HomeViewModel()
-
+        
         viewController.viewModel = viewModel
-
+        
         viewModel.router = router
         viewModel.view = viewController
-
+        
         router.viewController = viewController
-
+        
         return (viewController, viewModel, router)
     }
     
     // MARK: - Routes
+    
+    func showDetails(info: BemobileModel?){
+        DispatchQueue.main.async {
+            let controller = DetailsRouter.getViewController()
+            controller.viewModel.infoDetail = info
+            let nav = UINavigationController(rootViewController: controller)
+            nav.modalPresentationStyle = .fullScreen
+            self.viewController?.present(nav, animated: true, completion: nil)
+        }
+    }
     
 }

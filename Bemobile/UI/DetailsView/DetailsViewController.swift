@@ -14,16 +14,18 @@ protocol DetailsViewControllerProtocol: AnyObject {
 
 class DetailsViewController: UIViewController {
     
+    @IBOutlet weak var amount: UILabel!
+    
     // MARK: - Properties
     
     var viewModel: DetailsViewModel!
-    
     
     // MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    
+      
         configureUI()
     }
     
@@ -34,7 +36,7 @@ class DetailsViewController: UIViewController {
     // MARK: - Helpers
 
     private func configureUI() {
-
+        amount.text = String(viewModel.totalAmountInEuro())
     }
     
 }

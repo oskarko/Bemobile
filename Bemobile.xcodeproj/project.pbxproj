@@ -22,6 +22,9 @@
 		553613B22982590F001469FC /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553613AE2982590F001469FC /* DetailsViewController.swift */; };
 		553613B32982590F001469FC /* DetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553613AF2982590F001469FC /* DetailsViewModel.swift */; };
 		553613B42982590F001469FC /* DetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 553613B02982590F001469FC /* DetailsViewController.xib */; };
+		EC8CCC312982C26F003803D8 /* RateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8CCC302982C26F003803D8 /* RateModel.swift */; };
+		EC8CD68029826AB000429FB7 /* BemobileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8CD67F29826AB000429FB7 /* BemobileModel.swift */; };
+		EC8CD68229826D6000429FB7 /* BemobileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8CD68129826D6000429FB7 /* BemobileManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +64,9 @@
 		553613AE2982590F001469FC /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		553613AF2982590F001469FC /* DetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewModel.swift; sourceTree = "<group>"; };
 		553613B02982590F001469FC /* DetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailsViewController.xib; sourceTree = "<group>"; };
+		EC8CCC302982C26F003803D8 /* RateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateModel.swift; sourceTree = "<group>"; };
+		EC8CD67F29826AB000429FB7 /* BemobileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BemobileModel.swift; sourceTree = "<group>"; };
+		EC8CD68129826D6000429FB7 /* BemobileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BemobileManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +118,8 @@
 			isa = PBXGroup;
 			children = (
 				553613A02982588D001469FC /* App */,
+				EC8CCC322982CFF3003803D8 /* Manager */,
+				EC8CD67C2982693E00429FB7 /* Model */,
 				553613A2298258B3001469FC /* UI */,
 				553613A12982589C001469FC /* Resources */,
 				5536137E29825861001469FC /* Info.plist */,
@@ -183,6 +191,24 @@
 				553613B02982590F001469FC /* DetailsViewController.xib */,
 			);
 			path = DetailsView;
+			sourceTree = "<group>";
+		};
+		EC8CCC322982CFF3003803D8 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				EC8CD68129826D6000429FB7 /* BemobileManager.swift */,
+			);
+			name = Manager;
+			path = App/Manager;
+			sourceTree = "<group>";
+		};
+		EC8CD67C2982693E00429FB7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				EC8CD67F29826AB000429FB7 /* BemobileModel.swift */,
+				EC8CCC302982C26F003803D8 /* RateModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -319,9 +345,12 @@
 			files = (
 				553613712982585F001469FC /* AppDelegate.swift in Sources */,
 				553613B12982590F001469FC /* DetailsRouter.swift in Sources */,
+				EC8CD68029826AB000429FB7 /* BemobileModel.swift in Sources */,
 				553613A9298258F9001469FC /* HomeRouter.swift in Sources */,
 				553613B32982590F001469FC /* DetailsViewModel.swift in Sources */,
 				553613732982585F001469FC /* SceneDelegate.swift in Sources */,
+				EC8CD68229826D6000429FB7 /* BemobileManager.swift in Sources */,
+				EC8CCC312982C26F003803D8 /* RateModel.swift in Sources */,
 				553613B22982590F001469FC /* DetailsViewController.swift in Sources */,
 				553613AB298258F9001469FC /* HomeViewModel.swift in Sources */,
 				553613AA298258F9001469FC /* HomeViewController.swift in Sources */,
