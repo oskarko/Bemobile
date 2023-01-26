@@ -11,7 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DetailsViewController" customModule="Bemobile" customModuleProvider="target">
             <connections>
-                <outlet property="amount" destination="7Kt-Bb-Nuo" id="rcy-7s-nfq"/>
+                <outlet property="tableViewDetails" destination="99w-vw-3f9" id="Sla-gz-HPG"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -20,20 +20,22 @@
             <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Kt-Bb-Nuo">
-                    <rect key="frame" x="40" y="411.66666666666669" width="310" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="99w-vw-3f9">
+                    <rect key="frame" x="16" y="63" width="358" height="718"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="4H1-vT-ZOl"/>
+                        <outlet property="delegate" destination="-1" id="gjM-vD-hWB"/>
+                    </connections>
+                </tableView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="7Kt-Bb-Nuo" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="40" id="DUe-NQ-TkS" userLabel="Label.leading = Safe Area.leading + 80"/>
-                <constraint firstItem="7Kt-Bb-Nuo" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="TzC-oN-u1M"/>
-                <constraint firstItem="7Kt-Bb-Nuo" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="eOL-R6-R6r"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="7Kt-Bb-Nuo" secondAttribute="trailing" constant="40" id="zOp-HB-kT3" userLabel="Safe Area.trailing = Label.trailing + 80"/>
+                <constraint firstItem="99w-vw-3f9" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="16" id="2XN-zZ-VzT"/>
+                <constraint firstItem="99w-vw-3f9" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="WHa-mg-Mab"/>
+                <constraint firstItem="99w-vw-3f9" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="aVJ-ed-7XP"/>
+                <constraint firstItem="99w-vw-3f9" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="nHZ-NI-af4"/>
             </constraints>
             <point key="canvasLocation" x="4.615384615384615" y="20.616113744075829"/>
         </view>

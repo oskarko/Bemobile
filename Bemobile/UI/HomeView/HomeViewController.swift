@@ -21,6 +21,7 @@ class HomeViewController: UIViewController {
     var viewModel: HomeViewModel!
     var manager = BemobileManager()
     var infoAPI: [BemobileModel] = []
+    var infoArray = [String]()
 
     
    lazy var tableView : UITableView = {
@@ -66,19 +67,26 @@ class HomeViewController: UIViewController {
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let array = 
         self.viewModel.router?.showDetails(info: infoAPI[indexPath.row])
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return infoAPI.count
+        for item in infoAPI {
+            if !infoArray.contains(item.sku){
+                infoArray.append(item.sku)
+            }
+        }
+        return infoArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        let info = infoAPI[indexPath.row]
+        let info = infoArray[indexPath.row]
         var content = cell.defaultContentConfiguration()
-        content.text = info.sku
-        content.secondaryText = String(info.amount) + info.currency.rawValue
+        content.text = info
+        //content.secondaryText = String(info.amount) + info.currency.rawValue
         cell.contentConfiguration = content
         cell.backgroundColor = .white
         return cell
@@ -98,13 +106,8 @@ extension HomeViewController: BemobileManagerDelegate {
      
     func didUpdateInfo(info: [BemobileModel]) {
         infoAPI = info
-        tableView.reloadData()
-//        DispatchQueue.main.async {
-//            self.infoAPI = info
-//            self.tableView.reloadData()
-//        }
       
-        
+        tableView.reloadData()
     }
 
 }

@@ -14,11 +14,11 @@ protocol DetailsViewControllerProtocol: AnyObject {
 
 class DetailsViewController: UIViewController {
     
-    @IBOutlet weak var amount: UILabel!
-    
+    @IBOutlet weak var tableViewDetails: UITableView!
     // MARK: - Properties
     
     var viewModel: DetailsViewModel!
+    var infoDetail: [BemobileModel]?
     
     // MARK: - Lifecycle
 
@@ -36,12 +36,32 @@ class DetailsViewController: UIViewController {
     // MARK: - Helpers
 
     private func configureUI() {
-        amount.text = String(viewModel.totalAmountInEuro())
+ 
     }
     
 }
 
 // MARK: - DetailsViewControllerProtocol
+
+extension DetailsViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return (infoDetail?.count ?? 0) + 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+   
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        let info = infoArray[indexPath.row]
+        var content = cell.defaultContentConfiguration()
+        content.text = info
+        //content.secondaryText = String(info.amount) + info.currency.rawValue
+        cell.contentConfiguration = content
+        cell.backgroundColor = .white
+        return cell
+    }
+    
+    
+}
 
 extension DetailsViewController: DetailsViewControllerProtocol {
 
