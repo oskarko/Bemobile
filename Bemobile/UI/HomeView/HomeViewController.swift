@@ -9,112 +9,84 @@
 import UIKit
 
 protocol HomeViewControllerProtocol: AnyObject {
-
+    func reload()
 }
 
 class HomeViewController: UIViewController {
  
-    
-    
     // MARK: - Properties
     
     var viewModel: HomeViewModel!
-    var manager = BemobileManager()
-    var infoAPI: [BemobileModel] = []
-    var infoArray = [String]()
-    var rateArray = [RateModel]()
-
     
-   lazy var tableView : UITableView = {
+    lazy var tableView : UITableView = {
+        let tableView = UITableView()
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.rowHeight = 80.0
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.translatesAutoresizingMaskIntoConstraints = false
         
-       let tableView = UITableView()
-       tableView.delegate = self
-       tableView.dataSource = self
-       tableView.rowHeight = 80.0
-       tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-       tableView.translatesAutoresizingMaskIntoConstraints = false
-       return tableView
-   }()
+        return tableView
+    }()
+    
     // MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
-        manager.delegate = self
+        
         configureUI()
-        manager.fetchInfo()
-        manager.fetchRate()
-       
+        viewModel.viewDidLoad()
     }
     
     private func configureUI() {
         view.addSubview(tableView)
-        var topPadding : CGFloat = 0.0
-        if let topInset = UIApplication.shared.windows.first?.safeAreaInsets.top{
-            topPadding = topInset
+        var topPadding: CGFloat = 0.0
         
-        NSLayoutConstraint.activate([
-            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: topPadding),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        ])
-    }
-   
+        if let topInset = UIApplication.shared.windows.first?.safeAreaInsets.top {
+            topPadding = topInset
+            
+            NSLayoutConstraint.activate([
+                tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+                tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: topPadding),
+                tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            ])
+        }
     }
     
 }
 
-// MARK: - HomeViewControllerProtocol
+// MARK: - UITableViewDelegate, UITableViewDataSource
+
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
-        let array = infoAPI.filter({$0.sku == infoArray[indexPath.row]})
-        self.viewModel.router?.showDetails(info: array, rate: rateArray)
-    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        for item in infoAPI {
-            if !infoArray.contains(item.sku){
-                infoArray.append(item.sku)
-            }
-        }
-        return infoArray.count
+        viewModel.numberOfRowsIn(section)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        let info = infoArray[indexPath.row]
         var content = cell.defaultContentConfiguration()
-        content.text = info
+        content.text = viewModel.infoForRowAt(indexPath)
         cell.contentConfiguration = content
-        cell.backgroundColor = .white
+        
         return cell
-        
-      
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        viewModel.didSelectRowAt(indexPath)
     }
     
 }
-// MARK: - Delegado
-extension HomeViewController: BemobileManagerDelegate {
-    
-    func didUpdateRate(info: [RateModel]) {
-        
-       rateArray = info
-        
-    }
-    
-    
-     
-    func didUpdateInfo(info: [BemobileModel]) {
-        infoAPI = info
-      
-        tableView.reloadData()
-    }
-
-}
+// MARK: - HomeViewControllerProtocol
 
 extension HomeViewController: HomeViewControllerProtocol {
-
+    
+    func reload() {
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
+    
 }

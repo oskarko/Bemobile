@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class HomeRouter {
+final class HomeRouter {
     
     // MARK: - Properties
     
@@ -40,14 +40,10 @@ class HomeRouter {
     
     // MARK: - Routes
     
-    func showDetails(info: [BemobileModel]?, rate: [RateModel]?){
+    func showDetails(transactions: [TransactionModel], rates: [RateModel]) {
         DispatchQueue.main.async {
-            let controller = DetailsRouter.getViewController()
-            controller.viewModel.infoDetail = info
-            controller.viewModel.infoRate = rate
-            let nav = UINavigationController(rootViewController: controller)
-            nav.modalPresentationStyle = .fullScreen
-            self.viewController?.present(nav, animated: true, completion: nil)
+            let detailsView = DetailsRouter.getViewController(transactions: transactions, rates: rates)
+            self.viewController?.navigationController?.pushViewController(detailsView, animated: true)
         }
     }
     

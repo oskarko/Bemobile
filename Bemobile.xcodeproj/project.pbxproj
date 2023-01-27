@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5521E9A3298398CB00FDE360 /* BemobileServiceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5521E9A2298398CB00FDE360 /* BemobileServiceType.swift */; };
+		5521E9A5298398E300FDE360 /* ResultResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5521E9A4298398E300FDE360 /* ResultResponse.swift */; };
 		553613712982585F001469FC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553613702982585F001469FC /* AppDelegate.swift */; };
 		553613732982585F001469FC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553613722982585F001469FC /* SceneDelegate.swift */; };
 		5536137A29825861001469FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5536137929825861001469FC /* Assets.xcassets */; };
@@ -22,9 +24,10 @@
 		553613B22982590F001469FC /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553613AE2982590F001469FC /* DetailsViewController.swift */; };
 		553613B32982590F001469FC /* DetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553613AF2982590F001469FC /* DetailsViewModel.swift */; };
 		553613B42982590F001469FC /* DetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 553613B02982590F001469FC /* DetailsViewController.xib */; };
+		553613B629831235001469FC /* APIErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553613B529831235001469FC /* APIErrorResponse.swift */; };
 		EC8CCC312982C26F003803D8 /* RateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8CCC302982C26F003803D8 /* RateModel.swift */; };
-		EC8CD68029826AB000429FB7 /* BemobileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8CD67F29826AB000429FB7 /* BemobileModel.swift */; };
-		EC8CD68229826D6000429FB7 /* BemobileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8CD68129826D6000429FB7 /* BemobileManager.swift */; };
+		EC8CD68029826AB000429FB7 /* TransactionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8CD67F29826AB000429FB7 /* TransactionModel.swift */; };
+		EC8CD68229826D6000429FB7 /* BemobileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8CD68129826D6000429FB7 /* BemobileService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +48,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5521E9A2298398CB00FDE360 /* BemobileServiceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BemobileServiceType.swift; sourceTree = "<group>"; };
+		5521E9A4298398E300FDE360 /* ResultResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultResponse.swift; sourceTree = "<group>"; };
 		5536136D2982585F001469FC /* Bemobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bemobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		553613702982585F001469FC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		553613722982585F001469FC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -64,9 +69,10 @@
 		553613AE2982590F001469FC /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		553613AF2982590F001469FC /* DetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewModel.swift; sourceTree = "<group>"; };
 		553613B02982590F001469FC /* DetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailsViewController.xib; sourceTree = "<group>"; };
+		553613B529831235001469FC /* APIErrorResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIErrorResponse.swift; sourceTree = "<group>"; };
 		EC8CCC302982C26F003803D8 /* RateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateModel.swift; sourceTree = "<group>"; };
-		EC8CD67F29826AB000429FB7 /* BemobileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BemobileModel.swift; sourceTree = "<group>"; };
-		EC8CD68129826D6000429FB7 /* BemobileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BemobileManager.swift; sourceTree = "<group>"; };
+		EC8CD67F29826AB000429FB7 /* TransactionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionModel.swift; sourceTree = "<group>"; };
+		EC8CD68129826D6000429FB7 /* BemobileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BemobileService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,7 +124,7 @@
 			isa = PBXGroup;
 			children = (
 				553613A02982588D001469FC /* App */,
-				EC8CCC322982CFF3003803D8 /* Manager */,
+				EC8CCC322982CFF3003803D8 /* Service */,
 				EC8CD67C2982693E00429FB7 /* Model */,
 				553613A2298258B3001469FC /* UI */,
 				553613A12982589C001469FC /* Resources */,
@@ -165,8 +171,8 @@
 		553613A2298258B3001469FC /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				553613A3298258C3001469FC /* HomeView */,
 				553613A4298258D8001469FC /* DetailsView */,
+				553613A3298258C3001469FC /* HomeView */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -193,19 +199,22 @@
 			path = DetailsView;
 			sourceTree = "<group>";
 		};
-		EC8CCC322982CFF3003803D8 /* Manager */ = {
+		EC8CCC322982CFF3003803D8 /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				EC8CD68129826D6000429FB7 /* BemobileManager.swift */,
+				553613B529831235001469FC /* APIErrorResponse.swift */,
+				EC8CD68129826D6000429FB7 /* BemobileService.swift */,
+				5521E9A2298398CB00FDE360 /* BemobileServiceType.swift */,
+				5521E9A4298398E300FDE360 /* ResultResponse.swift */,
 			);
-			name = Manager;
-			path = App/Manager;
+			name = Service;
+			path = App/Service;
 			sourceTree = "<group>";
 		};
 		EC8CD67C2982693E00429FB7 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				EC8CD67F29826AB000429FB7 /* BemobileModel.swift */,
+				EC8CD67F29826AB000429FB7 /* TransactionModel.swift */,
 				EC8CCC302982C26F003803D8 /* RateModel.swift */,
 			);
 			path = Model;
@@ -345,12 +354,15 @@
 			files = (
 				553613712982585F001469FC /* AppDelegate.swift in Sources */,
 				553613B12982590F001469FC /* DetailsRouter.swift in Sources */,
-				EC8CD68029826AB000429FB7 /* BemobileModel.swift in Sources */,
+				EC8CD68029826AB000429FB7 /* TransactionModel.swift in Sources */,
 				553613A9298258F9001469FC /* HomeRouter.swift in Sources */,
 				553613B32982590F001469FC /* DetailsViewModel.swift in Sources */,
 				553613732982585F001469FC /* SceneDelegate.swift in Sources */,
-				EC8CD68229826D6000429FB7 /* BemobileManager.swift in Sources */,
+				5521E9A3298398CB00FDE360 /* BemobileServiceType.swift in Sources */,
+				EC8CD68229826D6000429FB7 /* BemobileService.swift in Sources */,
 				EC8CCC312982C26F003803D8 /* RateModel.swift in Sources */,
+				5521E9A5298398E300FDE360 /* ResultResponse.swift in Sources */,
+				553613B629831235001469FC /* APIErrorResponse.swift in Sources */,
 				553613B22982590F001469FC /* DetailsViewController.swift in Sources */,
 				553613AB298258F9001469FC /* HomeViewModel.swift in Sources */,
 				553613AA298258F9001469FC /* HomeViewController.swift in Sources */,

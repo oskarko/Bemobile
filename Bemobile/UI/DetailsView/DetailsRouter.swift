@@ -8,7 +8,7 @@
 
 import Foundation
 
-class DetailsRouter {
+final class DetailsRouter {
     
     // MARK: - Properties
     
@@ -16,16 +16,17 @@ class DetailsRouter {
 
     // MARK: - Helpers
     
-    static func getViewController() -> DetailsViewController {
-        let configuration = configureModule()
+    static func getViewController(transactions: [TransactionModel], rates: [RateModel]) -> DetailsViewController {
+        let configuration = configureModule(transactions: transactions, rates: rates)
 
         return configuration.vc
     }
     
-    private static func configureModule() -> (vc: DetailsViewController, vm: DetailsViewModel, rt: DetailsRouter) {
+    private static func configureModule(transactions: [TransactionModel],
+                                        rates: [RateModel]) -> (vc: DetailsViewController, vm: DetailsViewModel, rt: DetailsRouter) {
         let viewController = DetailsViewController()
         let router = DetailsRouter()
-        let viewModel = DetailsViewModel()
+        let viewModel = DetailsViewModel(transactions: transactions, rates: rates)
 
         viewController.viewModel = viewModel
 

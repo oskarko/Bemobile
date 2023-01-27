@@ -8,68 +8,50 @@
 
 import UIKit
 
-protocol DetailsViewControllerProtocol: AnyObject {
-
-}
-
 class DetailsViewController: UIViewController {
     
-    @IBOutlet weak var tableViewDetails: UITableView!
     // MARK: - Properties
     
     var viewModel: DetailsViewModel!
-    var infoDetail = [BemobileModel]()
+    
+    @IBOutlet weak var tableViewDetails: UITableView!
     
     // MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
     
-      
         configureUI()
     }
-    
-
-    // MARK: - Selectors
-
     
     // MARK: - Helpers
 
     private func configureUI() {
-        self.infoDetail = viewModel.infoDetail ?? []
         tableViewDetails.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
- 
+        tableViewDetails.rowHeight = 50.0
+    }
+}
+
+// MARK: - UITableViewDelegate, UITableViewDataSource
+
+extension DetailsViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        viewModel.numberOfRowsIn(section)
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        var content = cell.defaultContentConfiguration()
+        content.text = viewModel.infoForRowAt(indexPath)
+        cell.contentConfiguration = content
+        
+        return cell
     }
     
 }
 
 // MARK: - DetailsViewControllerProtocol
 
-extension DetailsViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    
-        return infoDetail.count + 1
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-   
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        if indexPath.row == infoDetail.count {
-            var content = cell.defaultContentConfiguration()
-            content.text = "total: " + String(viewModel.totalAmountInEuro()) +  "EUR"
-            cell.contentConfiguration = content
-            return cell
-        }
-        let info = infoDetail[indexPath.row]
-        var content = cell.defaultContentConfiguration()
-        content.text = String(info.amount) + (info.currency.rawValue)
-        cell.contentConfiguration = content
-        return cell
-    }
-    
-    
-}
-
-extension DetailsViewController: DetailsViewControllerProtocol {
-
-}
+protocol DetailsViewControllerProtocol: AnyObject { }
+extension DetailsViewController: DetailsViewControllerProtocol { }
